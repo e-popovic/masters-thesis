@@ -1,6 +1,32 @@
 .content {
   margin:auto;
   display: inline-block;
+  width: 100%;
 }
+.image-container, .image-title {
+  display: flex;
+  justify-content: center;
+}
+.slider-component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slider-component>div {
+  display: inline-block;
+  margin: 12px 24px;
+}
+.slider-img-name {
+  font-size: large;
+}
+mat-slider { width: 700px; }
 
-
+.slider-labels {
+  display: flex;
+  justify-content: space-around;  /* space-between space-around space-evenly */
+  width: 700px;   /* isto ko mat-slider */
+}
+.slider-labels div {
+  width: 65px;
+  text-align: center;
+}

@@ -1,13 +1,44 @@
 <div class="content">
-  <div>
+  <div class="image-title">
     <h1>{{imgTitle}}</h1>
   </div>
-  <img [src]="imgSrc" alt="test image"/>
-<!--  <div>-->
-<!--    <mat-slider>-->
-<!--      <input matSliderThumb>-->
-<!--    </mat-slider>-->
-<!--  </div>-->
+  <div class="image-container">
+    <img [src]="imgSrc" alt="test image"/>
+  </div>
+
+
+  <div class="slider-component">
+    <div class="slider-img-name">Image A</div>
+    <div>
+      <div class="slider-labels">
+        <div>Bad</div>
+        <div>Poor</div>
+        <div>Fair</div>
+        <div>Good</div>
+        <div>Excellent</div>
+      </div>
+      <mat-slider min="0" max="100" tickInterval="20" value="50" color="primary">
+        <input>
+<!--        <input matSliderThumb>-->
+      </mat-slider>
+    </div>
+  </div>
+
+  <div class="slider-component">
+    <div class="slider-img-name">Image B</div>
+    <div>
+      <div class="slider-labels">
+        <div>Bad</div>
+        <div>Poor</div>
+        <div>Fair</div>
+        <div>Good</div>
+        <div>Excellent</div>
+      </div>
+      <mat-slider min="0" max="100" tickInterval="20" value="50" color="primary">
+        <input>
+      </mat-slider>
+    </div>
+  </div>
 
 </div>
 
