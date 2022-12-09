@@ -1,42 +1,43 @@
 <div class="content">
-  <div class="image-title">
+  <div class="image-title" [ngClass]="{'hidden': imgTitle === '-'}">
     <h1>{{imgTitle}}</h1>
   </div>
+
   <div class="image-container">
     <img [src]="imgSrc" alt="test image"/>
   </div>
 
-
-  <div class="slider-component">
-    <div class="slider-img-name">Image A</div>
-    <div>
-      <div class="slider-labels">
-        <div>Bad</div>
-        <div>Poor</div>
-        <div>Fair</div>
-        <div>Good</div>
-        <div>Excellent</div>
+  <div [ngClass]="{'hidden': !evalAllowed}">
+    <div class="slider-component">
+      <div class="slider-img-name">Image A</div>
+      <div>
+        <div class="slider-labels">
+          <div>Bad</div>
+          <div>Poor</div>
+          <div>Fair</div>
+          <div>Good</div>
+          <div>Excellent</div>
+        </div>
+        <mat-slider min="0" max="100" tickInterval="20" color="primary" [(ngModel)]="valueA">
+          <input>
+        </mat-slider>
       </div>
-      <mat-slider min="0" max="100" tickInterval="20" value="50" color="primary">
-        <input>
-<!--        <input matSliderThumb>-->
-      </mat-slider>
     </div>
-  </div>
 
-  <div class="slider-component">
-    <div class="slider-img-name">Image B</div>
-    <div>
-      <div class="slider-labels">
-        <div>Bad</div>
-        <div>Poor</div>
-        <div>Fair</div>
-        <div>Good</div>
-        <div>Excellent</div>
+    <div class="slider-component">
+      <div class="slider-img-name">Image B</div>
+      <div>
+        <div class="slider-labels">
+          <div>Bad</div>
+          <div>Poor</div>
+          <div>Fair</div>
+          <div>Good</div>
+          <div>Excellent</div>
+        </div>
+        <mat-slider min="0" max="100" tickInterval="20" color="primary" [(ngModel)]="valueB">
+          <input>
+        </mat-slider>
       </div>
-      <mat-slider min="0" max="100" tickInterval="20" value="50" color="primary">
-        <input>
-      </mat-slider>
     </div>
   </div>
 

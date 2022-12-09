@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import * as FileSaver from "file-saver";
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,10 @@ export class AppComponent implements OnInit {
   title = 'image-eval';
   imgSrc = '';
   imgTitle = '';
+  evalAllowed = false;
+  valueA = 50;
+  valueB = 50;
+  results = ['']
 
   ngOnInit() {
     // noinspection JSIgnoredPromiseFromCall
@@ -21,6 +26,8 @@ export class AppComponent implements OnInit {
       this.shuffle(variants);
 
       for (const element of variants) {
+        this.evalAllowed = false;
+        this.valueA = this.valueB = 50;
         let imagesrcs = [i.toString(), i.toString()+element];
         this.shuffle(imagesrcs);
 
@@ -28,7 +35,7 @@ export class AppComponent implements OnInit {
         this.imgSrc = 'assets/images/'+ i.toString() + '/' + imagesrcs[0] + '.png';
         await this.delay(3000);   // 10000
 
-        this.imgTitle = '';
+        this.imgTitle = '-';
         this.imgSrc = 'assets/images/grey.png';
         await this.delay(1000);   // 3000
 
@@ -36,15 +43,16 @@ export class AppComponent implements OnInit {
         this.imgSrc = 'assets/images/'+ i.toString() + '/' + imagesrcs[1] + '.png';
         await this.delay(3000);   // 10000
 
-        this.imgTitle = '';
+        this.imgTitle = '-';
         this.imgSrc = 'assets/images/grey.png';
         await this.delay(1000);   // 3000
 
         this.imgTitle = 'Image A';
         this.imgSrc = 'assets/images/'+ i.toString() + '/' + imagesrcs[0] + '.png';
+        this.evalAllowed = true;
         await this.delay(3000);   // 10000
 
-        this.imgTitle = '';
+        this.imgTitle = '-';
         this.imgSrc = 'assets/images/grey.png';
         await this.delay(1000);   // 3000
 
@@ -52,12 +60,15 @@ export class AppComponent implements OnInit {
         this.imgSrc = 'assets/images/'+ i.toString() + '/' + imagesrcs[1] + '.png';
         await this.delay(3000);   // 10000
 
-        this.imgTitle = '';
+        this.imgTitle = '-';
         this.imgSrc = 'assets/images/grey.png';
         await this.delay(3000);   // 5000 (5-11 s)
 
+        this.results.push(imagesrcs[0] + '|' + imagesrcs[1] + ":" + (this.valueA - this.valueB).toString() + "\n");
       }
     }
+    let blob = new Blob(this.results,{type:"text/plain;charset=utf-8"});
+    FileSaver.saveAs(blob, "evaluation-results.txt");
   }
 
   delay(ms: number) {

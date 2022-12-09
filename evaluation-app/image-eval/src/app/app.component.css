@@ -30,3 +30,4 @@ mat-slider { width: 700px; }
   width: 65px;
   text-align: center;
 }
+.hidden { visibility: hidden; }
