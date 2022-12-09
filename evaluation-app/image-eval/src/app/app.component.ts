@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import * as FileSaver from "file-saver";
 
 @Component({
@@ -6,7 +6,7 @@ import * as FileSaver from "file-saver";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'image-eval';
   imgSrc = '';
   imgTitle = '';
@@ -14,8 +14,10 @@ export class AppComponent implements OnInit {
   valueA = 50;
   valueB = 50;
   results = ['']
+  startScreen = true;
 
-  ngOnInit() {
+  start() {
+    this.startScreen = false;
     // noinspection JSIgnoredPromiseFromCall
     this.presentImages();
   }

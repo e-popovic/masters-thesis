@@ -1,4 +1,12 @@
-<div class="content">
+<div *ngIf="startScreen" class="start-screen">
+  <div>
+    <h1>Image Quality Evaluation</h1>
+  </div>
+  <div>
+    <button (click)="start()">Begin</button>
+  </div>
+</div>
+<div class="content" *ngIf="!startScreen">
   <div class="image-title" [ngClass]="{'hidden': imgTitle === '-'}">
     <h1>{{imgTitle}}</h1>
   </div>
