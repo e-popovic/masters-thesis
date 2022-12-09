@@ -25,62 +25,68 @@ export class AppComponent {
   }
 
   async presentImages() {
-    for (let i = 1; i < 3; i++) {     //  promjenjivo, broj orig Image
-      let variants = ['-h', '-s'];    // promjenjivo, varijante promjena
-      this.shuffle(variants);
-
-      for (const element of variants) {
-        let imagesrcs = [i.toString(), i.toString()+element];
-        this.shuffle(imagesrcs);
-
-        this.imgTitle = 'Image A';
-        this.imgSrc = 'assets/images/'+ i.toString() + '/' + imagesrcs[0] + '.png';
-        await this.delay(3000);   // 10000
-
-        this.imgTitle = '-';
-        this.imgSrc = 'assets/images/grey.png';
-        await this.delay(1000);   // 3000
-
-        this.imgTitle = 'Image B';
-        this.imgSrc = 'assets/images/'+ i.toString() + '/' + imagesrcs[1] + '.png';
-        await this.delay(3000);   // 10000
-
-        this.imgTitle = '-';
-        this.imgSrc = 'assets/images/grey.png';
-        await this.delay(1000);   // 3000
-
-        this.imgTitle = 'Image A';
-        this.imgSrc = 'assets/images/'+ i.toString() + '/' + imagesrcs[0] + '.png';
-        this.evalAllowed = true;
-        await this.delay(3000);   // 10000
-
-        this.imgTitle = '-';
-        this.imgSrc = 'assets/images/grey.png';
-        await this.delay(1000);   // 3000
-
-        this.imgTitle = 'Image B';
-        this.imgSrc = 'assets/images/'+ i.toString() + '/' + imagesrcs[1] + '.png';
-        await this.delay(3000);   // 10000
-
-        this.imgTitle = '-';
-        this.imgSrc = 'assets/images/grey.png';
-        await this.delay(2000);   // 5000 (5-11 s)
-
-        this.evalAllowed = false;
-        this.results.push(imagesrcs[0] + '|' + imagesrcs[1] + ":" + (this.valueA - this.valueB).toString() + "\n");
-        this.valueA = this.valueB = 50;
-
-        if (i == 2 && element === variants[variants.length-1]) {  // i je zadnji, promjenjivo!
-          this.messageText = "Thank you for your time!";
-          this.message = true;
-        }
-        else {
-          this.message = true;
-          await this.delay(2000);
-          this.message = false;
-        }
+    let variants = [];
+    let mods = ['-h', '-s'];    // promjenjivo, varijante promjena
+    for (let i = 1; i < 3; i++) {   //  promjenjivo, broj orig Image
+      for (const mod of mods) {
+        variants.push(i.toString()+mod);
       }
     }
+    this.shuffle(variants);
+
+    for (const element of variants) {
+      let original = element.charAt(0);
+      let imagesrcs = [original, element];
+      this.shuffle(imagesrcs);
+
+      this.imgTitle = 'Image A';
+      this.imgSrc = 'assets/images/' + imagesrcs[0] + '.png';
+      await this.delay(3000);   // 10000
+
+      this.imgTitle = '-';
+      this.imgSrc = 'assets/images/grey.png';
+      await this.delay(1000);   // 3000
+
+      this.imgTitle = 'Image B';
+      this.imgSrc = 'assets/images/' + imagesrcs[1] + '.png';
+      await this.delay(3000);   // 10000
+
+      this.imgTitle = '-';
+      this.imgSrc = 'assets/images/grey.png';
+      await this.delay(1000);   // 3000
+
+      this.imgTitle = 'Image A';
+      this.imgSrc = 'assets/images/' + imagesrcs[0] + '.png';
+      this.evalAllowed = true;
+      await this.delay(3000);   // 10000
+
+      this.imgTitle = '-';
+      this.imgSrc = 'assets/images/grey.png';
+      await this.delay(1000);   // 3000
+
+      this.imgTitle = 'Image B';
+      this.imgSrc = 'assets/images/' + imagesrcs[1] + '.png';
+      await this.delay(3000);   // 10000
+
+      this.imgTitle = '-';
+      this.imgSrc = 'assets/images/grey.png';
+      await this.delay(3000);   // 5000 (5-11 s)
+
+      this.evalAllowed = false;
+      this.results.push(imagesrcs[0] + '|' + imagesrcs[1] + ":" + (this.valueA - this.valueB).toString() + "\n");
+      this.valueA = this.valueB = 50;
+
+      if (element === variants[variants.length-1]) {
+        this.messageText = "Thank you for your time!";
+        this.message = true;
+      }
+      else {
+        this.message = true;
+        await this.delay(2000);
+        this.message = false;
+      }
+    }
+
     let blob = new Blob(this.results,{type:"text/plain;charset=utf-8"});
     FileSaver.saveAs(blob, "evaluation-results.txt");
   }
