@@ -6,7 +6,14 @@
     <button (click)="start()">Begin</button>
   </div>
 </div>
-<div class="content" *ngIf="!startScreen">
+
+<div *ngIf="message" class="start-screen">
+  <div>
+    <h1>{{ messageText }}</h1>
+  </div>
+</div>
+
+<div class="content" *ngIf="!startScreen && !message">
   <div class="image-title" [ngClass]="{'hidden': imgTitle === '-'}">
     <h1>{{imgTitle}}</h1>
   </div>
