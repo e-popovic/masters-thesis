@@ -47,9 +47,10 @@
         </div>
       </div>
 
-<!--      <div class="button-row">-->
-<!--        <button mat-raised-button color="primary">Ocjeni</button>-->
-<!--      </div>-->
+      <div class="progress">
+        <mat-progress-bar mode="determinate" [value]="progressValue"></mat-progress-bar>
+        <div class="progress-text">Set {{i+1}} od {{variants.length}}</div>
+      </div>
 
     </div>
   </div>

@@ -13,42 +13,48 @@ export class AppComponent {
   evalAllowed = false;
   valueA = 50;
   valueB = 50;
-  results = ['']
+  progressValue = 0;
+  i = -1;
+  results = [''];
   startScreen = true;
   message = false;
   messageText = "Sljedeći set:";
+  variants: String[] = [];
 
   start() {
+    let mods = ['-h', '-sl', '-sh'];    // promjenjivo, varijante promjena
+    for (let i = 0; i < 2; i++) {   //  promjenjivo, broj orig Image
+      for (const mod of mods) {
+        this.variants.push(i.toString()+mod);
+      }
+    }
+    this.shuffle(this.variants);
+
     this.startScreen = false;
     // noinspection JSIgnoredPromiseFromCall
     this.presentImages();
   }
 
   async presentImages() {
-    let variants = [];
-    let mods = ['-h', '-sl', '-sh'];    // promjenjivo, varijante promjena
-    for (let i = 0; i < 2; i++) {   //  promjenjivo, broj orig Image
-      for (const mod of mods) {
-        variants.push(i.toString()+mod);
-      }
-    }
-    this.shuffle(variants);
 
-    for (const element of variants) {
+    for (const element of this.variants) {
       let original = element.charAt(0);
       let imagesrcs = [original, element];
       this.shuffle(imagesrcs);
 
-      this.imgTitle = 'Slika A';
+      this.i++;
+      this.progressValue = this.i/this.variants.length * 100;
+
       this.imgSrc = 'assets/images/' + imagesrcs[0] + '.jpg';
+      this.imgTitle = 'Slika A';
       await this.delay(3000);   // 8000
 
       this.imgTitle = '-';
       this.imgSrc = 'assets/images/grey.png';
       await this.delay(1000);   // 3000
 
-      this.imgTitle = 'Slika B';
       this.imgSrc = 'assets/images/' + imagesrcs[1] + '.jpg';
+      this.imgTitle = 'Slika B';
       await this.delay(3000);   // 8000
 
       this.imgTitle = '-';
@@ -59,7 +65,7 @@ export class AppComponent {
       this.results.push(imagesrcs[0] + '|' + imagesrcs[1] + ":" + (this.valueA - this.valueB).toString() + "\n");
       this.valueA = this.valueB = 50;
 
-      if (element === variants[variants.length-1]) {
+      if (element === this.variants[this.variants.length-1]) {
         this.messageText = "Hvala!";
         this.message = true;
       }
@@ -87,6 +93,5 @@ export class AppComponent {
     }
     return a;
   }
-
 
 }
