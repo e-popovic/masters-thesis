@@ -1,6 +1,6 @@
 @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
 *, .body { font-family: Roboto, "Helvetica Neue", sans-serif; }
-html, body { width: 100%; height: 100%; margin: 0; padding: 0;}
+html, body { width: 100%; height: 100%; margin: 0; padding: 0; color: #212427;}
 
 
 

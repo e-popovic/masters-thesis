@@ -38,7 +38,7 @@ export class AppComponent {
   async presentImages() {
 
     for (const element of this.variants) {
-      let original = element.charAt(0);
+      let original = element.split('-')[0];
       let imagesrcs = [original, element];
       this.shuffle(imagesrcs);
 
@@ -50,7 +50,7 @@ export class AppComponent {
       await this.delay(3000);   // 8000
 
       this.imgTitle = '-';
-      this.imgSrc = 'assets/images/grey.png';
+      this.imgSrc = 'assets/images/grey.jpg';
       await this.delay(1000);   // 3000
 
       this.imgSrc = 'assets/images/' + imagesrcs[1] + '.jpg';
@@ -58,7 +58,7 @@ export class AppComponent {
       await this.delay(3000);   // 8000
 
       this.imgTitle = '-';
-      this.imgSrc = 'assets/images/grey.png';
+      this.imgSrc = 'assets/images/grey.jpg';
       await this.delay(3000);   // 8000
 
       this.evalAllowed = false;
