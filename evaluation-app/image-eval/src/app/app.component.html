@@ -1,9 +1,9 @@
 <div *ngIf="startScreen" class="start-screen">
   <div>
-    <h1>Image Quality Evaluation</h1>
+    <h1>Evaluacija kvalitete slika</h1>
   </div>
   <div>
-    <button (click)="start()">Begin</button>
+    <button (click)="start()" mat-raised-button color="primary">Kreni</button>
   </div>
 </div>
 
@@ -18,41 +18,39 @@
     <h1>{{imgTitle}}</h1>
   </div>
 
-  <div class="image-container">
-    <img [src]="imgSrc" alt="test image"/>
-  </div>
-
-  <div [ngClass]="{'hidden': !evalAllowed}">
-    <div class="slider-component">
-      <div class="slider-img-name">Image A</div>
-      <div>
-        <div class="slider-labels">
-          <div>Bad</div>
-          <div>Poor</div>
-          <div>Fair</div>
-          <div>Good</div>
-          <div>Excellent</div>
-        </div>
-        <mat-slider min="0" max="100" tickInterval="20" color="primary" [(ngModel)]="valueA">
-          <input>
-        </mat-slider>
-      </div>
+  <div class="img-slider">
+    <div class="image-container">
+      <img [src]="imgSrc" alt="test slika"/>
     </div>
 
     <div class="slider-component">
-      <div class="slider-img-name">Image B</div>
-      <div>
-        <div class="slider-labels">
-          <div>Bad</div>
-          <div>Poor</div>
-          <div>Fair</div>
-          <div>Good</div>
-          <div>Excellent</div>
-        </div>
-        <mat-slider min="0" max="100" tickInterval="20" color="primary" [(ngModel)]="valueB">
-          <input>
-        </mat-slider>
+      <div class="top-row">
+        <div>A</div>
+        <div>B</div>
       </div>
+
+      <div class="bottom-row">
+        <div class="slider-labels">
+          <div>Vrlo visoka</div>
+          <div>Visoka</div>
+          <div>Srednja</div>
+          <div>Niska</div>
+          <div>Vrlo niska</div>
+        </div>
+        <div class="sliders">
+          <mat-slider min="0" max="100" tickInterval="20" color="primary" [vertical]="true" [(ngModel)]="valueA">
+            <input>
+          </mat-slider>
+          <mat-slider min="0" max="100" tickInterval="20" color="primary" [vertical]="true" [(ngModel)]="valueB">
+            <input>
+          </mat-slider>
+        </div>
+      </div>
+
+<!--      <div class="button-row">-->
+<!--        <button mat-raised-button color="primary">Ocjeni</button>-->
+<!--      </div>-->
+
     </div>
   </div>
 

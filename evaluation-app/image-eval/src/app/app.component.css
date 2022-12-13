@@ -5,48 +5,60 @@
 
 .start-screen h1 { letter-spacing: 4px; }
 
-.start-screen h1, .slider-labels div {  text-align: center; }
+.start-screen h1 {  text-align: center; }
 
 .start-screen button {
-  padding: 12px 24px;
+  padding: 8px 24px;
   font-size: large;
   letter-spacing: 2px;
-  border-color: #3F51B5;
-  color: #283593;
-  border-radius: 5px;
   margin: 32px;
 }
 
 .content {
   margin:auto;
-  display: inline-block;
   width: 100%;
 }
 
-.image-container, .image-title, .start-screen, .start-screen div, .slider-component, .slider-labels {
+.slider-component { width: 15%; }
+.image-container { width: 70%; }
+
+.image-container, .image-title, .start-screen, .start-screen div, .slider-component, .slider-labels,
+.bottom-row, .top-row, .button-row, .img-slider {
   display: flex;
 }
 
-.image-container, .image-title, .start-screen, .start-screen div, .slider-component {
+.image-container, .image-title, .start-screen, .start-screen div, .slider-component, .img-slider {
   justify-content: center;
 }
-.slider-component {
-  align-items: center;
-}
-.slider-component>div {
-  display: inline-block;
-  margin: 12px 24px;
-}
-.slider-img-name {
-  font-size: large;
-}
-mat-slider { width: 700px; }
 
-.slider-labels {
-  justify-content: space-around;  /* space-between space-around space-evenly */
-  width: 700px;   /* isto ko mat-slider */
+.bottom-row, .top-row, .button-row { justify-content: flex-end; }
+
+.slider-labels { justify-content: space-around; }
+
+.slider-component, .slider-labels {
+  flex-direction: column;
 }
-.slider-labels div {
-  width: 65px;
+
+.slider-labels > div { text-align: right; }
+.top-row { text-align: center; }
+
+.sliders {
+  display: inline-block;
+  width: 100px;
 }
+
+.top-row>div {
+  width: 32px;
+  margin: 8px;
+}
+
+mat-slider { height: 450px; }
+
+.button-row {
+  padding-right: 16px;
+  padding-top: 16px;
+}
+
+img { height: 600px; }
+
 .hidden { visibility: hidden; }

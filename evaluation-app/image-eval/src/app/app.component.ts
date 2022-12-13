@@ -16,7 +16,7 @@ export class AppComponent {
   results = ['']
   startScreen = true;
   message = false;
-  messageText = "Next set:";
+  messageText = "Sljedeći set:";
 
   start() {
     this.startScreen = false;
@@ -26,8 +26,8 @@ export class AppComponent {
 
   async presentImages() {
     let variants = [];
-    let mods = ['-h', '-s'];    // promjenjivo, varijante promjena
-    for (let i = 1; i < 3; i++) {   //  promjenjivo, broj orig Image
+    let mods = ['-h', '-sl', '-sh'];    // promjenjivo, varijante promjena
+    for (let i = 0; i < 2; i++) {   //  promjenjivo, broj orig Image
       for (const mod of mods) {
         variants.push(i.toString()+mod);
       }
@@ -39,45 +39,28 @@ export class AppComponent {
       let imagesrcs = [original, element];
       this.shuffle(imagesrcs);
 
-      this.imgTitle = 'Image A';
-      this.imgSrc = 'assets/images/' + imagesrcs[0] + '.png';
-      await this.delay(3000);   // 10000
+      this.imgTitle = 'Slika A';
+      this.imgSrc = 'assets/images/' + imagesrcs[0] + '.jpg';
+      await this.delay(3000);   // 8000
 
       this.imgTitle = '-';
       this.imgSrc = 'assets/images/grey.png';
       await this.delay(1000);   // 3000
 
-      this.imgTitle = 'Image B';
-      this.imgSrc = 'assets/images/' + imagesrcs[1] + '.png';
-      await this.delay(3000);   // 10000
+      this.imgTitle = 'Slika B';
+      this.imgSrc = 'assets/images/' + imagesrcs[1] + '.jpg';
+      await this.delay(3000);   // 8000
 
       this.imgTitle = '-';
       this.imgSrc = 'assets/images/grey.png';
-      await this.delay(1000);   // 3000
-
-      this.imgTitle = 'Image A';
-      this.imgSrc = 'assets/images/' + imagesrcs[0] + '.png';
-      this.evalAllowed = true;
-      await this.delay(3000);   // 10000
-
-      this.imgTitle = '-';
-      this.imgSrc = 'assets/images/grey.png';
-      await this.delay(1000);   // 3000
-
-      this.imgTitle = 'Image B';
-      this.imgSrc = 'assets/images/' + imagesrcs[1] + '.png';
-      await this.delay(3000);   // 10000
-
-      this.imgTitle = '-';
-      this.imgSrc = 'assets/images/grey.png';
-      await this.delay(3000);   // 5000 (5-11 s)
+      await this.delay(3000);   // 8000
 
       this.evalAllowed = false;
       this.results.push(imagesrcs[0] + '|' + imagesrcs[1] + ":" + (this.valueA - this.valueB).toString() + "\n");
       this.valueA = this.valueB = 50;
 
       if (element === variants[variants.length-1]) {
-        this.messageText = "Thank you for your time!";
+        this.messageText = "Hvala!";
         this.message = true;
       }
       else {
