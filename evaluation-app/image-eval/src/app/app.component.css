@@ -1,6 +1,8 @@
 .start-screen {
   flex-direction: column;
   height: 100%;
+  width: 55%;
+  margin: auto;
 }
 
 .start-screen h1 {
@@ -16,6 +18,8 @@
   margin: 32px;
 }
 
+.start-text > div { margin-bottom: 12px; }
+
 .content {
   margin:auto;
   width: 100%;
@@ -23,32 +27,17 @@
 
 .slider-component { width: 12%; }
 .image-container { width: 70%; }
-.start-screen {
-  width: 55%;
-  margin: auto;
-}
 
 .image-container, .image-title, .start-screen, .start-screen div, .slider-component, .slider-labels,
 .bottom-row, .top-row, .img-slider, .start-text {
   display: flex;
 }
-
 .image-container, .image-title, .start-screen, .start-screen div, .slider-component, .img-slider {
   justify-content: center;
 }
-
 .bottom-row, .top-row{ justify-content: flex-end; }
-
 .slider-labels { justify-content: space-around; }
-
-.slider-component, .slider-labels, .start-screen, .start-text {
-  flex-direction: column;
-}
-
-.start-text > div {
-  margin-bottom: 12px;
-}
-
+.slider-component, .slider-labels, .start-screen, .start-text { flex-direction: column; }
 .slider-labels > div { text-align: right; }
 .top-row, .start-screen { text-align: center; }
 
@@ -64,9 +53,7 @@
 
 mat-slider { height: 450px; }
 
-.progress {
-  margin-top: 24px;
-}
+.progress { margin-top: 24px; }
 
 .progress-text {
   text-align: center;
