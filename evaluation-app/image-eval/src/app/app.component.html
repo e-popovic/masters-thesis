@@ -2,6 +2,25 @@
   <div>
     <h1>Evaluacija kvalitete slika</h1>
   </div>
+  <div class="start-text">
+    <div>Dobrodošli na subjektivnu evaluaciju kvalitete slika.</div>
+    <div>
+      U ovoj evaluaciji ispituje se utjecaj promjene zasićenja i tona boje na kvalitetu slike.
+      Tijekom evaluacije bit će Vam prezentirani parovi slika, od kojih je jedna slika originalna,
+      dok je drugoj izmijenjeno zasićenje ili ton.
+    </div>
+    <div>
+      Slika A bit će prikazana 8 sekundi, nakon čega slijedi sivi neutralni podražaj u trajanju 3 sekunde.
+      Sljedeća će se prikazati slika B u trajanju 8 sekundi te sivi neutralni podražaj u trajanju od 8 sekundi.
+      Par slika A i B prikazat će se samo jednom, nakon čega slijedi idući set. Informacija o tome koja je slika u paru
+      originalna neće biti dostupna.
+    </div>
+    <div>
+      Na desnoj su strani ekrana klizne skale kojima tijekom prezentacije trebate ocijeniti kvalitetu obje slike.
+      Skale označavaju vrijednosti od vrlo niske do vrlo visoke kvalitete.
+      Evaluacija traje 18 minuta.
+    </div>
+  </div>
   <div>
     <button (click)="start()" mat-raised-button color="primary">Kreni</button>
   </div>
@@ -49,7 +68,7 @@
 
       <div class="progress">
         <mat-progress-bar mode="determinate" [value]="progressValue"></mat-progress-bar>
-        <div class="progress-text">Set {{i+1}} od {{variants.length}}</div>
+        <div class="progress-text">Set {{i}} od {{variants.length}}</div>
       </div>
 
     </div>

@@ -3,9 +3,11 @@
   height: 100%;
 }
 
-.start-screen h1 { letter-spacing: 4px; }
-
-.start-screen h1 {  text-align: center; }
+.start-screen h1 {
+  letter-spacing: 4px;
+  text-align: center;
+  margin-bottom: 36px;
+}
 
 .start-screen button {
   padding: 8px 24px;
@@ -21,9 +23,13 @@
 
 .slider-component { width: 12%; }
 .image-container { width: 70%; }
+.start-screen {
+  width: 55%;
+  margin: auto;
+}
 
 .image-container, .image-title, .start-screen, .start-screen div, .slider-component, .slider-labels,
-.bottom-row, .top-row, .img-slider {
+.bottom-row, .top-row, .img-slider, .start-text {
   display: flex;
 }
 
@@ -35,12 +41,16 @@
 
 .slider-labels { justify-content: space-around; }
 
-.slider-component, .slider-labels {
+.slider-component, .slider-labels, .start-screen, .start-text {
   flex-direction: column;
 }
 
+.start-text > div {
+  margin-bottom: 12px;
+}
+
 .slider-labels > div { text-align: right; }
-.top-row { text-align: center; }
+.top-row, .start-screen { text-align: center; }
 
 .sliders {
   display: inline-block;

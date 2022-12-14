@@ -14,7 +14,7 @@ export class AppComponent {
   valueA = 50;
   valueB = 50;
   progressValue = 0;
-  i = -1;
+  i = 0;
   results = [''];
   startScreen = true;
   message = false;
@@ -39,7 +39,7 @@ export class AppComponent {
 
     for (const element of this.variants) {
       let original = element.split('-')[0];
-      let imagesrcs = [original, element];
+      let imagesrcs = [element, original];
       this.shuffle(imagesrcs);
 
       this.i++;
@@ -62,7 +62,8 @@ export class AppComponent {
       await this.delay(3000);   // 8000
 
       this.evalAllowed = false;
-      this.results.push(imagesrcs[0] + '|' + imagesrcs[1] + ":" + (this.valueA - this.valueB).toString() + "\n");
+      this.results.push(imagesrcs[0] + ':' + imagesrcs[1] + '|' + this.valueA.toString()
+        + ':' + this.valueB.toString() + "\n");
       this.valueA = this.valueB = 50;
 
       if (element === this.variants[this.variants.length-1]) {
