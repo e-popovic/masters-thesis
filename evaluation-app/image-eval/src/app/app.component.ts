@@ -10,7 +10,6 @@ export class AppComponent {
   title = 'image-eval';
   imgSrc = '';
   imgTitle = '';
-  evalAllowed = false;
   valueA = 50;
   valueB = 50;
   progressValue = 0;
@@ -19,15 +18,20 @@ export class AppComponent {
   startScreen = true;
   message = false;
   messageText = "Sljedeći set:";
-  variants: String[] = [];
+  variants = [
+    '0-h+5', '0-h+10','0-s+30','0-s-30',
+    '1-h+5', '1-h+15','1-s+40','1-s-40',
+    '2-h-10', '2-h+10','2-s+30','2-s-30',
+    '3-h+5', '3-h+10','3-s+40','3-s-40',
+    '4-h+15', '4-h-15','4-s+30','4-s-30',
+    '5-h+5', '5-h+15','5-s+20','5-s-20',
+    '6-h-5', '6-h-15','6-s+40','6-s-30',
+    '7-h-5', '7-h-15','7-s+30','7-s-30',
+    '8-h-10', '8-h-20','8-s+50','8-s-50',
+    '9-h+10', '9-h-20','9-s+20','9-s-30',
+  ];
 
   start() {
-    let mods = ['-h', '-sl', '-sh'];    // promjenjivo, varijante promjena
-    for (let i = 0; i < 2; i++) {   //  promjenjivo, broj orig Image
-      for (const mod of mods) {
-        this.variants.push(i.toString()+mod);
-      }
-    }
     this.shuffle(this.variants);
 
     this.startScreen = false;
@@ -38,7 +42,7 @@ export class AppComponent {
   async presentImages() {
 
     for (const element of this.variants) {
-      let original = element.split('-')[0];
+      let original = element.charAt(0);
       let imagesrcs = [element, original];
       this.shuffle(imagesrcs);
 
@@ -61,7 +65,6 @@ export class AppComponent {
       this.imgSrc = 'assets/images/grey.jpg';
       await this.delay(3000);   // 8000
 
-      this.evalAllowed = false;
       this.results.push(imagesrcs[0] + ':' + imagesrcs[1] + '|' + this.valueA.toString()
         + ':' + this.valueB.toString() + "\n");
       this.valueA = this.valueB = 50;
