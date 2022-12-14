@@ -32,6 +32,7 @@ export class AppComponent {
   ];
 
   start() {
+    //this.createDuplicateSets(2);
     this.shuffle(this.variants);
 
     this.startScreen = false;
@@ -82,6 +83,16 @@ export class AppComponent {
 
     let blob = new Blob(this.results,{type:"text/plain;charset=utf-8"});
     FileSaver.saveAs(blob, "evaluation-results.txt");
+  }
+
+  // check observer credibility by repeating random sets
+  createDuplicateSets(noOfDuplicates: number) {
+    for (let i = 0; i < noOfDuplicates; i++) {
+      let index =  Math.floor(Math.random() * this.variants.length);
+      this.variants.splice(index, 1);
+      index = Math.floor(Math.random() * this.variants.length);
+      this.variants.push(this.variants[index]);
+    }
   }
 
   delay(ms: number) {
