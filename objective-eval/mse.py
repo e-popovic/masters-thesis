@@ -72,8 +72,6 @@ for filename in os.scandir(directory):
         f.write(filename.name[:-4])
         f.write("|")
 
-        print(filename.name[:-4])
-
         # Rupload edited image
 
         image2 = cv2.imread(filename.path)
@@ -154,8 +152,6 @@ for filename in os.scandir(directory):
 
         data += str(msel) + ':' + str(msea) + ':' + str(mseb_lab) + '\n'
         f.write(data)
-
-        print(data)
 
         cnt = (cnt + 1) % 4
 
