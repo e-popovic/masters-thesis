@@ -8,7 +8,8 @@ import * as FileSaver from "file-saver";
 })
 export class AppComponent {
   title = 'image-eval';
-  imgSrc = '';
+  imgSrcA = '';
+  imgSrcB = '';
   imgTitle = '';
   valueSlider = 50;
   progressValue = 0;
@@ -19,15 +20,15 @@ export class AppComponent {
   messageText = "Sljedeći set:";
   variants = [
     '0-h+10', '0-h+23','0-s+30','0-s-30',
-    '1-h-8', '1-h-17','1-s+40','1-s-40',
-    '2-h+7', '2-h+15','2-s+30','2-s-30',
-    '3-h+8', '3-h+15','3-s+40','3-s-40',
-    '4-h-9', '4-h-18','4-s+30','4-s-30',
-    '5-h+5', '5-h+15','5-s+20','5-s-20',
-    '6-h-8', '6-h-18','6-s+40','6-s-30',
-    '7-h-8', '7-h-18','7-s+30','7-s-30',
-    '8-h-15', '8-h-30','8-s+50','8-s-50',
-    '9-h+15', '9-h+30','9-s+20','9-s-30',
+    // '1-h-8', '1-h-17','1-s+40','1-s-40',
+    // '2-h+7', '2-h+15','2-s+30','2-s-30',
+    // '3-h+8', '3-h+15','3-s+40','3-s-40',
+    // '4-h-9', '4-h-18','4-s+30','4-s-30',
+    // '5-h+5', '5-h+15','5-s+20','5-s-20',
+    // '6-h-8', '6-h-18','6-s+40','6-s-30',
+    // '7-h-8', '7-h-18','7-s+30','7-s-30',
+    // '8-h-15', '8-h-30','8-s+50','8-s-50',
+    // '9-h+15', '9-h+30','9-s+20','9-s-30',
   ];
 
   start() {
@@ -49,21 +50,13 @@ export class AppComponent {
       this.i++;
       this.progressValue = this.i/this.variants.length * 100;
 
-      this.imgSrc = 'assets/images/' + imagesrcs[0] + '.jpg';
-      this.imgTitle = 'Slika A';
-      await this.delay(3000);   // 8000
+      this.imgSrcA = 'assets/images/' + imagesrcs[0] + '.jpg';
+      this.imgSrcB = 'assets/images/' + imagesrcs[1] + '.jpg';
+      this.imgTitle = 'Set ' + this.i;
+      await this.delay(3000);   // 10000
 
-      this.imgTitle = '-';
-      this.imgSrc = 'assets/images/grey.jpg';
+      this.imgSrcA = this.imgSrcB = 'assets/images/grey.jpg';
       await this.delay(1000);   // 3000
-
-      this.imgSrc = 'assets/images/' + imagesrcs[1] + '.jpg';
-      this.imgTitle = 'Slika B';
-      await this.delay(3000);   // 8000
-
-      this.imgTitle = '-';
-      this.imgSrc = 'assets/images/grey.jpg';
-      await this.delay(1000);   // 8000
 
       this.results.push(imagesrcs[0] + ':' + imagesrcs[1] + '|' + this.valueSlider.toString() + "\n");
       this.valueSlider = 50;

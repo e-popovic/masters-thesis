@@ -33,14 +33,14 @@
 </div>
 
 <div class="content" *ngIf="!startScreen && !message">
-  <div class="image-title" [ngClass]="{'hidden': imgTitle === '-'}">
+  <div class="image-title">
     <h1>{{imgTitle}}</h1>
   </div>
 
   <div class="img-slider">
     <div class="image-container">
-      <img [src]="imgSrc" alt="slika A"/>
-<!--      <img [src]="imgSrc" alt="slika B"/>-->
+      <img [src]="imgSrcA" alt="slika A"/>
+      <img [src]="imgSrcB" alt="slika B"/>
     </div>
 
     <div class="slider-component">
