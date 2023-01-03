@@ -10,8 +10,7 @@ export class AppComponent {
   title = 'image-eval';
   imgSrc = '';
   imgTitle = '';
-  valueA = 50;
-  valueB = 50;
+  valueSlider = 50;
   progressValue = 0;
   i = 0;
   results = [''];
@@ -64,11 +63,10 @@ export class AppComponent {
 
       this.imgTitle = '-';
       this.imgSrc = 'assets/images/grey.jpg';
-      await this.delay(3000);   // 8000
+      await this.delay(1000);   // 8000
 
-      this.results.push(imagesrcs[0] + ':' + imagesrcs[1] + '|' + this.valueA.toString()
-        + ':' + this.valueB.toString() + "\n");
-      this.valueA = this.valueB = 50;
+      this.results.push(imagesrcs[0] + ':' + imagesrcs[1] + '|' + this.valueSlider.toString() + "\n");
+      this.valueSlider = 50;
 
       if (element === this.variants[this.variants.length-1]) {
         this.messageText = "Hvala!";
