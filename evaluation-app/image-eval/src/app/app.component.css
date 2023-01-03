@@ -31,15 +31,15 @@
 .image-container { width: 84%; }
 
 .image-container, .image-title, .start-screen, .start-screen div, .slider-component, .slider-labels,
-.bottom-row, .top-row, .img-slider, .start-text, .content {
+.bottom-row, .top-row, .img-slider, .start-text, .content, .evaluator-info {
   display: flex;
 }
-.image-container, .image-title, .start-screen, .start-screen div, .slider-component, .img-slider, .top-row, .content {
+.image-container, .image-title, .start-screen, .start-screen div, .slider-component, .img-slider, .top-row, .content, .evaluator-info {
   justify-content: center;
 }
 .bottom-row { justify-content: flex-end; }
-.slider-labels { justify-content: space-around; }
-.slider-component, .slider-labels, .start-screen, .start-text, .content { flex-direction: column; }
+.slider-labels { justify-content: space-between; }
+.slider-component, .slider-labels, .start-screen, .start-text, .content, .evaluator-info { flex-direction: column; }
 .slider-labels > div { text-align: right; }
 .top-row, .start-screen { text-align: center; }
 .image-container {
@@ -47,6 +47,13 @@
   align-items: center;
 }
 
+.evaluator-info { margin-top: 24px; }
+.evaluator-info>div {
+  margin: 20px auto;
+  font-size: 18px;
+}
+label { margin-right: 20px; }
+mat-radio-button { margin-right: 16px; }
 
 .slider {
   display: inline-block;
@@ -55,7 +62,7 @@
 
 .top-row>div {
   font-size: 20px;
-  margin-bottom: 4px;
+  margin-bottom: 12px;
   font-weight: bold;
 }
 

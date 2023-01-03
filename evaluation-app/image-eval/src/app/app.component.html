@@ -10,19 +10,25 @@
       dok je drugoj izmijenjeno zasićenje ili ton.
     </div>
     <div>
-      Slika A bit će prikazana 8 sekundi, nakon čega slijedi sivi neutralni podražaj u trajanju 3 sekunde.
-      Sljedeća će se prikazati slika B u trajanju 8 sekundi te sivi neutralni podražaj u trajanju od 8 sekundi.
+      Slika A (lijeva slika) i slika B (desna slika) prikazat će se istovremeno u trajanju 10 sekundi,
+      <!--      PROMIJENI AKO TREBA-->
+      nakon čega slijedi sivi neutralni podražaj u trajanju 3 sekunde.
       Par slika A i B prikazat će se samo jednom, nakon čega slijedi idući set. Informacija o tome koja je slika u paru
       originalna neće biti dostupna.
     </div>
     <div>
-      Na desnoj su strani ekrana klizne skale kojima tijekom prezentacije trebate ocijeniti kvalitetu obje slike.
-      Skale označavaju vrijednosti od vrlo niske do vrlo visoke kvalitete.
+      Na desnoj je strani ekrana klizna skala kojom tijekom trebate ocijeniti koja Vam se slika više sviđa.
+      Skala označava vrijednosti od -3 (slika B ima puno lošije boje od slike A) do
+      +3 (slika B ima puno bolje boje od slike A).
+      Na kraju evaluacije otvorit će se prozor za spremanje datoteke s odgovorima. Potrebno je samo stisnuti "Spremi."
+    </div>
+    <div>
       Evaluacija traje 18 minuta.
+<!--      PROMIJENI AKO TREBA-->
     </div>
   </div>
   <div>
-    <button (click)="start()" mat-raised-button color="primary">Kreni</button>
+    <button (click)="fillPersonalInfo()" mat-raised-button color="primary">Kreni</button>
   </div>
 </div>
 
@@ -32,7 +38,51 @@
   </div>
 </div>
 
-<div class="content" *ngIf="!startScreen && !message">
+<div *ngIf="personalInfo" class="start-screen">
+
+  <div>
+    Molim Vas unesite osnovne osobne informacije.
+    Ove informacije ostaju anonimne i koriste se u statističke svrhe.
+  </div>
+
+  <div class="evaluator-info">
+    <div>
+      <mat-form-field>
+        <mat-label>Dob</mat-label>
+        <input matInput placeholder='Samo broj, npr. "30"' [(ngModel)]="infoAge">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <label id="spol-label">Spol:</label>
+      <mat-radio-group
+        aria-labelledby="spol-label"
+        color="primary"
+        [(ngModel)]="infoSex">
+        <mat-radio-button class="example-radio-button" value="m">Muški</mat-radio-button>
+        <mat-radio-button class="example-radio-button" value="f">Ženski</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div>
+      <label id="vid-label">Mogu normalno raspoznavati boje (nemam daltonizam).</label>
+      <mat-radio-group
+        aria-labelledby="vid-label"
+        color="primary"
+        [(ngModel)]="infoColorSight">
+        <mat-radio-button class="example-radio-button" value="y">Da</mat-radio-button>
+        <mat-radio-button class="example-radio-button" value="n">Ne</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+
+  <div>
+    <button (click)="start()" mat-raised-button color="primary">Pokreni evaluaciju</button>
+  </div>
+</div>
+
+
+<div class="content" *ngIf="!startScreen && !message && !personalInfo">
   <div class="image-title">
     <h1>{{imgTitle}}</h1>
   </div>
@@ -45,18 +95,18 @@
 
     <div class="slider-component">
       <div class="top-row">
-        <div>Kvaliteta slike B u odnosu na sliku A</div>
+        <div>Kvaliteta boja slike B u odnosu na sliku A</div>
       </div>
 
       <div class="bottom-row">
         <div class="slider-labels">
-          <div>Mnogo bolja: +3</div>
+          <div>Puno bolja: +3</div>
           <div>Bolja: +2</div>
           <div>Malo bolja: +1</div>
           <div>Jednaka: 0</div>
           <div>Malo lošija: -1</div>
           <div>Lošija: -2</div>
-          <div>Mnogo lošija: -3</div>
+          <div>Puno lošija: -3</div>
         </div>
         <div class="slider">
           <mat-slider min="0" max="100" tickInterval="17" color="primary" [vertical]="true" [(ngModel)]="valueSlider">

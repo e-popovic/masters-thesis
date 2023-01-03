@@ -7,6 +7,8 @@ import {MatSliderModule} from '@angular/material/slider';
 import { FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatInputModule} from '@angular/material/input';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatSliderModule,
     FormsModule,
     MatButtonModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatInputModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

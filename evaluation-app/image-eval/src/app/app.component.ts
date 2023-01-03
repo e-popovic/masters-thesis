@@ -16,26 +16,36 @@ export class AppComponent {
   i = 0;
   results = [''];
   startScreen = true;
+  personalInfo = false;
+  infoAge = '';
+  infoSex = '';
+  infoColorSight = '';
   message = false;
   messageText = "Sljedeći set:";
   variants = [
     '0-h+10', '0-h+23','0-s+30','0-s-30',
-    // '1-h-8', '1-h-17','1-s+40','1-s-40',
-    // '2-h+7', '2-h+15','2-s+30','2-s-30',
-    // '3-h+8', '3-h+15','3-s+40','3-s-40',
-    // '4-h-9', '4-h-18','4-s+30','4-s-30',
-    // '5-h+5', '5-h+15','5-s+20','5-s-20',
-    // '6-h-8', '6-h-18','6-s+40','6-s-30',
-    // '7-h-8', '7-h-18','7-s+30','7-s-30',
-    // '8-h-15', '8-h-30','8-s+50','8-s-50',
-    // '9-h+15', '9-h+30','9-s+20','9-s-30',
+    '1-h-8', '1-h-17','1-s+40','1-s-40',
+    '2-h+7', '2-h+15','2-s+30','2-s-30',
+    '3-h+8', '3-h+15','3-s+40','3-s-40',
+    '4-h-9', '4-h-18','4-s+30','4-s-30',
+    '5-h+5', '5-h+15','5-s+20','5-s-20',
+    '6-h-8', '6-h-18','6-s+40','6-s-30',
+    '7-h-8', '7-h-18','7-s+30','7-s-30',
+    '8-h-15', '8-h-30','8-s+50','8-s-50',
+    '9-h+15', '9-h+30','9-s+20','9-s-30',
   ];
+
+  fillPersonalInfo() {
+    this.startScreen = false;
+    this.personalInfo = true;
+  }
 
   start() {
     //this.createDuplicateSets(2);
     this.shuffle(this.variants);
+    this.results.push(this.infoAge + '/' + this.infoSex + '/' + this.infoColorSight + "\n");
+    this.personalInfo = false;
 
-    this.startScreen = false;
     // noinspection JSIgnoredPromiseFromCall
     this.presentImages();
   }
@@ -73,7 +83,8 @@ export class AppComponent {
     }
 
     let blob = new Blob(this.results,{type:"text/plain;charset=utf-8"});
-    FileSaver.saveAs(blob, "evaluation-results.txt");
+    let answerFile = 'eval-odgovori-' + Date.now() + '.txt';
+    FileSaver.saveAs(blob, answerFile);
   }
 
   // check observer credibility by repeating random sets
