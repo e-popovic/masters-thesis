@@ -10,7 +10,7 @@
       dok je drugoj izmijenjeno zasićenje ili ton.
     </div>
     <div>
-      Slika A (lijeva slika) i slika B (desna slika) prikazat će se istovremeno u trajanju od 12 sekundi,
+      Slika A (lijeva slika) i slika B (desna slika) prikazat će se istovremeno u trajanju od 15 sekundi,
       nakon čega slijedi sivi neutralni podražaj u trajanju od 4 sekunde.
       Svaki par slika A i B prikazat će se samo jednom, nakon čega slijedi idući set.
       Informacija o tome koja je slika u paru originalna neće biti dostupna.
@@ -80,10 +80,7 @@
 </div>
 
 
-<div class="content" *ngIf="!startScreen && !message && !personalInfo">
-  <div class="image-title">
-    <h1>{{imgTitle}}</h1>
-  </div>
+<div class="content" *ngIf="!startScreen && !message && !personalInfo && !greyScreen">
 
   <div class="img-slider">
     <div class="image-container">
@@ -123,3 +120,4 @@
 
 </div>
 
+<div class="grey-screen" *ngIf="greyScreen"></div>

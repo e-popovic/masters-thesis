@@ -10,23 +10,22 @@ export class AppComponent {
   title = 'image-eval';
   imgSrcA = '';
   imgSrcB = '';
-  imgTitle = '';
   valueSlider = 50;
   progressValue = 0;
   i = 0;
   results = [''];
   startScreen = true;
   personalInfo = false;
+  message = false;
+  greyScreen = false;
   infoAge = '';
   infoSex = '';
   infoColorSight = '';
-  message = false;
-  messageText = "Sljedeći set:";
+  messageText = "Hvala!";
   variants = [
     '0-h+10', '0-h+23','0-s+30','0-s-30',
     '1-h-8', '1-h-17','1-s+40','1-s-40',
     '2-h+7', '2-h+15','2-s+30','2-s-30',
-    '3-h+8', '3-h+15','3-s+40','3-s-40',
     '4-h-9', '4-h-18','4-s+30','4-s-30',
     '5-h+5', '5-h+15','5-s+20','5-s-20',
     '6-h-8', '6-h-18','6-s+40','6-s-30',
@@ -65,23 +64,18 @@ export class AppComponent {
 
       this.imgSrcA = 'assets/images/' + imagesrcs[0] + '.jpg';
       this.imgSrcB = 'assets/images/' + imagesrcs[1] + '.jpg';
-      this.imgTitle = 'Set ' + this.i;
-      await this.delay(12000);  // 12000
+      await this.delay(15000);
 
-      this.imgSrcA = this.imgSrcB = 'assets/images/grey.jpg';
-      await this.delay(4000); // 4000
+      this.greyScreen = true;
+      await this.delay(4000);
 
       this.results.push(imagesrcs[0] + ':' + imagesrcs[1] + '|' + this.valueSlider.toString() + "\n");
       this.valueSlider = 50;
 
+      this.greyScreen = false;
+
       if (element === this.variants[this.variants.length-1]) {
-        this.messageText = "Hvala!";
         this.message = true;
-      }
-      else {
-        this.message = true;
-        await this.delay(2000); // 2000
-        this.message = false;
       }
     }
 
