@@ -33,6 +33,9 @@ export class AppComponent {
     '7-h-8', '7-h-18','7-s+30','7-s-30',
     '8-h-15', '8-h-30','8-s+50','8-s-50',
     '9-h+15', '9-h+30','9-s+20','9-s-30',
+    '10-h-8', '10-h-15','10-s+30','10-s-30',
+    '11-h-8', '11-h-15','11-s+30','11-s-30',
+    '12-h-8', '12-h-15','12-s+30','12-s-20',
   ];
 
   fillPersonalInfo() {
@@ -53,7 +56,7 @@ export class AppComponent {
   async presentImages() {
 
     for (const element of this.variants) {
-      let original = element.charAt(0);
+      let original = element.split('-')[0];
       let imagesrcs = [element, original];
       this.shuffle(imagesrcs);
 
@@ -63,10 +66,10 @@ export class AppComponent {
       this.imgSrcA = 'assets/images/' + imagesrcs[0] + '.jpg';
       this.imgSrcB = 'assets/images/' + imagesrcs[1] + '.jpg';
       this.imgTitle = 'Set ' + this.i;
-      await this.delay(3000);   // 10000
+      await this.delay(12000);  // 12000
 
       this.imgSrcA = this.imgSrcB = 'assets/images/grey.jpg';
-      await this.delay(1000);   // 3000
+      await this.delay(4000); // 4000
 
       this.results.push(imagesrcs[0] + ':' + imagesrcs[1] + '|' + this.valueSlider.toString() + "\n");
       this.valueSlider = 50;
@@ -77,7 +80,7 @@ export class AppComponent {
       }
       else {
         this.message = true;
-        await this.delay(2000);  // 2000
+        await this.delay(2000); // 2000
         this.message = false;
       }
     }
