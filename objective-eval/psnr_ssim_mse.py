@@ -13,7 +13,7 @@ names_method = []
 
 file_psnr = open("psnr_calculated.txt", "a")
 file_ssim = open("ssim_calculated.txt", "a")
-# file_msssim = open("msssim_calculated.txt", "a")
+file_mse = open("mse_calculated.txt", "a")
 
 for filename in os.scandir('images/originals'): 
     if filename.is_file():
@@ -51,8 +51,8 @@ while(count<48):
     file_psnr.write('/')
     file_ssim.write(img_name)
     file_ssim.write('/')
-    # file_msssim.write(img_name)
-    # file_msssim.write('/')
+    file_mse.write(img_name)
+    file_mse.write('/')
 
     # PSNR
     psnr_r = sewar.full_ref.psnr(r1, r2, MAX=None)
@@ -92,24 +92,24 @@ while(count<48):
         str(ssim_a) + ':' + str(ssim_b_lab) + ':' + str(ssim_ab) + '\n' )
     file_ssim.write(data)
 
-    # MSSSIM
-    # msssim_r = sewar.full_ref.msssim(r1, r2, MAX=None)
-    # msssim_g = sewar.full_ref.msssim(g1, g2, MAX=None)
-    # msssim_b_rgb = sewar.full_ref.msssim(b1_rgb, b2_rgb, MAX=None)
-    # msssim_rgb = (msssim_r + msssim_g + msssim_b_rgb)/3
+    # MSE
+    mse_r = sewar.full_ref.mse(r1, r2)
+    mse_g = sewar.full_ref.mse(g1, g2)
+    mse_b_rgb = sewar.full_ref.mse(b1_rgb, b2_rgb)
+    mse_rgb = (mse_r + mse_g + mse_b_rgb)/3
 
-    # msssim_u = sewar.full_ref.msssim(u1, u2, MAX=None)
-    # msssim_v = sewar.full_ref.msssim(v1, v2, MAX=None)
-    # msssim_uv = (msssim_u + msssim_v)/2
+    mse_u = sewar.full_ref.mse(u1, u2)
+    mse_v = sewar.full_ref.mse(v1, v2)
+    mse_uv = (mse_u + mse_v)/2
 
-    # msssim_a = sewar.full_ref.msssim(a1, a2, MAX=None)
-    # msssim_b_lab = sewar.full_ref.msssim(b1_lab, b2_lab, MAX=None)
-    # msssim_ab = (msssim_a + msssim_b_lab)/2
+    mse_a = sewar.full_ref.mse(a1, a2)
+    mse_b_lab = sewar.full_ref.mse(b1_lab, b2_lab)
+    mse_ab = (mse_a + mse_b_lab)/2
 	
-    # data = (str(msssim_r) + ':' + str(msssim_g) + ':' + str(msssim_b_rgb) + ':' + str(msssim_rgb) + '|' + 
-    #     str(msssim_u) + ':' + str(msssim_v) + ':' + str(msssim_uv) + '|' + 
-    #     str(msssim_a) + ':' + str(msssim_b_lab) + ':' + str(msssim_ab) + '\n' )
-    # file_msssim.write(data)
+    data = (str(mse_r) + ':' + str(mse_g) + ':' + str(mse_b_rgb) + ':' + str(mse_rgb) + '|' + 
+        str(mse_u) + ':' + str(mse_v) + ':' + str(mse_uv) + '|' + 
+        str(mse_a) + ':' + str(mse_b_lab) + ':' + str(mse_ab) + '\n' )
+    file_mse.write(data)
 
     count = count+1
     cv2.waitKey(0)
