@@ -37,54 +37,49 @@ export class AppComponent {
     '12-h-8', '12-h-15','12-s+30','12-s-20',
   ];
 
+  // show personal info form
   fillPersonalInfo() {
     this.startScreen = false;
     this.personalInfo = true;
   }
 
+  // save personal info, randomize the order of image sets and begin presenting them
   start() {
+    // uncomment next line to input duplicate image sets into the evaluation
     //this.createDuplicateSets(2);
     this.shuffle(this.variants);
     this.results.push(this.infoAge + '/' + this.infoSex + '/' + this.infoColorSight + "\n");
     this.personalInfo = false;
-
     // noinspection JSIgnoredPromiseFromCall
     this.presentImages();
   }
 
+  // present image sets and save evaluation results to .txt file
   async presentImages() {
-
     for (const element of this.variants) {
       let original = element.split('-')[0];
       let imagesrcs = [element, original];
       this.shuffle(imagesrcs);
-
       this.i++;
       this.progressValue = this.i/this.variants.length * 100;
-
       this.imgSrcA = 'assets/images/' + imagesrcs[0] + '.jpg';
       this.imgSrcB = 'assets/images/' + imagesrcs[1] + '.jpg';
       await this.delay(15000);
-
       this.greyScreen = true;
       await this.delay(4000);
-
       this.results.push(imagesrcs[0] + ':' + imagesrcs[1] + '|' + this.valueSlider.toString() + "\n");
       this.valueSlider = 50;
-
       this.greyScreen = false;
-
       if (element === this.variants[this.variants.length-1]) {
         this.message = true;
       }
     }
-
     let blob = new Blob(this.results,{type:"text/plain;charset=utf-8"});
     let answerFile = 'eval-odgovori-' + Date.now() + '.txt';
     FileSaver.saveAs(blob, answerFile);
   }
 
-  // check observer credibility by repeating random sets
+  // repeat noOfDuplicates random sets (to check observer credibility)
   createDuplicateSets(noOfDuplicates: number) {
     for (let i = 0; i < noOfDuplicates; i++) {
       let index =  Math.floor(Math.random() * this.variants.length);
@@ -94,12 +89,12 @@ export class AppComponent {
     }
   }
 
+  // wait for ms seconds
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
-  //https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
-  //Fisher–Yates shuffle algorithm
+  // Fisher–Yates shuffle algorithm for the array a
   shuffle(a: Array<String>) {
     for (let i = a.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
